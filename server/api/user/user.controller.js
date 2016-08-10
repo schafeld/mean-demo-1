@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var gravatar = require('gravatar');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -12,6 +13,9 @@ var validationError = function(res, err) {
 /**
  * Get list of users
  * restriction: 'admin'
+ * @param {Object} req request object
+ * @param {Object} res response object
+ * @return {void}
  */
 exports.index = function(req, res) {
   User.find({}, '-salt -hashedPassword', function (err, users) {
@@ -23,8 +27,16 @@ exports.index = function(req, res) {
 /**
  * Creates a new user
  */
-exports.create = function (req, res, next) {
+exports.create = function(req, res, next) {
+  // add Gravatar image for user
+  var getGravatar = gravatar.url(req.body.email, {
+    s: 40,
+    d: 'retro'
+  });
+
   var newUser = new User(req.body);
+
+  newUser.gravatar = getGravatar;
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
