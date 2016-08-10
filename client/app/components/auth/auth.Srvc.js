@@ -1,3 +1,5 @@
+/* global angular */
+
 (function() {
   'use strict';
 
@@ -53,6 +55,9 @@
 
       /**
        * Create a new user
+       * @param {object} user User object
+       * @param {function} callback callback function
+       * @return {function} User.save function
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
