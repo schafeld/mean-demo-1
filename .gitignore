@@ -1,2 +1,8 @@
-node_modules/
-client/bower_components/
+node_modules
+client/bower_components
+.DS_Store
+Thumbs.db
+.idea
+*.sublime-workspace
+npm-debug.log
+cache
