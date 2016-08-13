@@ -1,3 +1,5 @@
+/* global angular */
+
 (function() {
   'use strict';
 
@@ -19,7 +21,7 @@
 
   config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
   run.$inject = ['$rootScope', '$location', 'Auth'];
-  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$location']
+  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$location'];
 
   function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
@@ -56,11 +58,10 @@
           // remove any stale tokens
           $cookieStore.remove('token');
           return $q.reject(response);
-        } else {
-          return $q.reject(response);
-        }
+        } // else {
+        return $q.reject(response);
+        // }
       }
     };
   }
-
 })();
