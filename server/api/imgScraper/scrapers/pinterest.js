@@ -14,8 +14,11 @@ exports.list = function(url, cb) {
       var $ = cheerio.load(body);
       var pin = {};
       var $url = url;
-      var $img = $('.heightContainer img').attr('src'); // get from Pinterest
-      var $desc = $('.heightContainer img').attr('alt');// description from Pinterest
+
+      var $img = $('.heightContainer .pinImage').attr('src');
+      // var $img = $('.heightContainer img').attr('src'); // get from Pinterest
+
+      var $desc = $('.heightContainer img').attr('alt'); // description from Pinterest
 
       console.log($img + ' pin url');
 
