@@ -6,3 +6,4 @@ Thumbs.db
 *.sublime-workspace
 npm-debug.log
 cache
+client/assets/images/uploads/

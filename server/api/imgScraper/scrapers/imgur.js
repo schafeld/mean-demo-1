@@ -14,8 +14,10 @@ exports.list = function(url, cb) {
     if (!error) {
       var $ = cheerio.load(body);
       var $url = url;
-      var $img = $('img.js-post-image-thumb').attr('src');
-      var $desc = $('img.js-post-image-thumb').attr('alt'); // description from Imgur
+      // var $img = $('img.js-post-image-thumb').attr('src');
+      // var $desc = $('img.js-post-image-thumb').attr('alt'); // description from Imgur
+      var $img = $('div.post-image img').attr('src');
+      var $desc = $('div.post-image img').attr('alt');
 
       console.log($img + ' Imgur image url');
 
